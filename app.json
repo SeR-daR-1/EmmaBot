@@ -34,7 +34,7 @@
       },
       "GIT_TOKEN":{
         "description": "",
-        "value": "",
+        "value": "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",
         "required": false
       },  
       "OWNER_ID": {
