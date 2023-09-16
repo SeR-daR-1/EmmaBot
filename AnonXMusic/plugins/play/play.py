@@ -41,11 +41,11 @@ async def check_is_joined(message):
         status = await app.get_chat_member("cczza", userid)
         return True
     except Exception:
-        await message.reply_text(f'⌯︙عذراً : {message.from_user.mention}\n⌯︙عليك الأشتراك في قناة البوت أولاً !\n⌯︙قناة البوت : @cczza ⚠️.\nꔹ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ꔹ',reply_markup=force_btn,disable_web_page_preview=False)
+        await message.reply_text(f'🚧┇عزيزي: {message.from_user.mention}\n🚧┇أشتࢪك في قناة البوت أولاً.\n🚧┇قناة البوت: @cczza 🧚‍♀',reply_markup=force_btn,disable_web_page_preview=False)
         return False
 
 
-@app.on_message(command(["تشغيل",])
+@app.on_message(command(["تشغيل"])
     & filters.group
     & ~BANNED_USERS
 )
