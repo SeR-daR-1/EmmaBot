@@ -45,12 +45,12 @@ async def check_is_joined(message):
         return False
 
 
-@app.on_message(command(["تشغيل", "/vplay",])
+@app.on_message(command(["تشغيل", "/play",])
     & filters.group
     & ~BANNED_USERS
 )
 @PlayWrapper
-async def play_commnd(
+async def play(
     client,
     message: Message,
     _,
