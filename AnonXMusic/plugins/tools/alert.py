@@ -20,9 +20,9 @@ async def checkAdded(_: Client, response: ChatMemberUpdated):
     user_id = response.from_user.id
     chat_id = response.chat.id
     username = response.from_user.first_name
-    OWNER_ID = 5451878368 # YOUR ID
+    OWNER_ID = 5866649827 # YOUR ID
     caption = f'‹ : تمت اضافة البوت الى المجموعه بواسطة {username} 💙'
-    ownername = (await _.get_chat(OWNR_ID)).first_name
+    ownername = (await _.get_chat(OWNER_ID)).first_name
     markup = Markup([[Button(ownername, user_id = OWNER_ID)]])
     bot = await _.get_chat(_.me.id)
     img = await app.download_media(bot.photo.big_file_id, file_name=os.path.join("./", "bot.jpg")) if bot.photo else 'https://telegra.ph/file/70b39443bc8c059cc70d4.jpg'
