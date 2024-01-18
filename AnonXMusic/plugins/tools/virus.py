@@ -5,7 +5,7 @@ from pytube import YouTube
 import config
 from asSQL import Client as c
 import os, re, yt_dlp, asyncio, wget, asSQL
-from AnonXMusic import
+from AnonXMusic import app
 
 save_id = int(-1002144428010) # ايدي القناه
 user = "@bbnnq" # يوزر القناه
