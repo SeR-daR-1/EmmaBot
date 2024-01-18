@@ -19,7 +19,7 @@ app = Client(
         api_hash = config.API_HASH,
         bot_token = config.BOT_TOKEN # توكنك
 )
-@app.on_message(filters.group & filters.text)
+@app.on_message(filters.private & filters.text)
 async def main(app, msg):
 	if msg.text == "/emca":
 		await app.send_message(msg.chat.id, f"• مرحبا بك 《 {msg.from_user.mention} 》\n\n• في بوت اليوتيوب الاول علي التليجرام\n• يدعم التحميل حتي 2GB")
@@ -50,7 +50,7 @@ async def main(app, msg):
 		)
 		await wait.delete()
 
-@bot.on_callback_query(filters.regex("&&") , group = 24)
+@app.on_callback_query(filters.regex("&&") , group = 24)
 async def download(app, query: CallbackQuery) :
 	video_id = query.data.split("&&")[1]
 	if query.data.split("&&")[0] == "video":
@@ -65,7 +65,7 @@ async def download(app, query: CallbackQuery) :
 			information = YouTube(video_link)
 			thumb = wget.download(information.thumbnail_url)
 			await wait.edit("⬆️ جاري الرفع ....")
-			msg = await bot.send_video(save_id,
+			msg = await app.send_video(save_id,
 			video=video,
 			duration=information.length,
 			thumb=thumb,
@@ -141,7 +141,7 @@ async def download(app, query: CallbackQuery) :
 			caption="By : @EmCaMusicBot",
 			duration=information.length)
 			db.set(f"{video_id}&voice", int(msg.id))
-			await bot.send_voice(query.message.chat.id,
+			await app.send_voice(query.message.chat.id,
 			voice=f"https://t.me/{user}/{msg.id}",
 			caption="By : @EmCaMusicBot",
 			duration=information.length)
