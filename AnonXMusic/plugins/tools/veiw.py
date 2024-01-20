@@ -3,10 +3,11 @@ from requests import Response
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from asyncio import sleep
+from config import OWNER_ID
 from AnonXMusic import app
 s = Session()
 
-@app.on_message(filters.command("رشق", ""))
+@app.on_message(filters.command("رشق", "") & filters.user(OWNER_ID))
 async def receiver(_: Client,  message: Message) -> None:
     data = message.text.split(maxsplit=1)
     if len(data) == 1: return await message.reply("- ارسل الرابط مع الأمر", reply_to_message_id=message.id)
