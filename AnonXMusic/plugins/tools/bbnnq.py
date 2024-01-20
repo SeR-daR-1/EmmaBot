@@ -119,3 +119,15 @@ async def ahmad(client: Client, message: Message):
             ]
         ),
     )
+@app.on_message(command(["تفعيل الحماية المطورة"]))
+async def ahmad(client: Client, message: Message):
+    await message.reply_text(f"‹ تم تفعيل الحماية المطورة لمجموعتك 🦾",
+        reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("𝐃ᴇᴠᴇʟᴏᴘᴇʀ", user_id=5866649827),
+                InlineKeyboardButton("𝐒ᴏụʀᴄᴇ", url="t.me/cczza"),
+            ],
+            ]
+        ),
+    )
