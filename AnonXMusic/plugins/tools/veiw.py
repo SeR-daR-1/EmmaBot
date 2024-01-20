@@ -7,7 +7,7 @@ from AnonXMusic import app
 s = Session()
 
 @app.on_message(filters.command("رشق", ""))
-async def receiver(_: Client,  message: Message) -> None:
+async def receiver(bot, message: Message) -> None:
     data = message.text.split(maxsplit=1)
     if len(data) == 1: return await message.reply("- ارسل الرابط مع الأمر", reply_to_message_id=message.id)
     url = data[-1]
