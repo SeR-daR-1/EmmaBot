@@ -19,12 +19,12 @@ async def ktm(_: Client, message: Message):
     elif member.status == owner:
         if muted.get(str(chat_id)): muted[str(chat_id)].append(userB_id)
         else: muted[str(chat_id)] = [userB_id]
-        await message.reply(f"- تم كتم المستخدم {replied.from_user.first_name} بواسطة {message.from_user.first_name}")
+        await message.reply(f"‹ تم كتم المستخدم{replied.from_user.mention}\n‹ بواسطة: {message.from_user.mention}\n‹ لإلغاء كتمه أرسل: الغاء الكتم .")
     elif memberB.status in [admin, owner]: await message.reply("- لايمكنك كتم مشرف او مالك.", reply_to_message_id=message.id)
     elif member.status == admin:
         if muted.get(str(chat_id)): muted[str(chat_id)].append(userB_id)
         else: muted[str(chat_id)] = [userB_id]
-        await message.reply(f"- تم كتم المستخدم {replied.from_user.first_name} بواسطة {message.from_user.first_name}")
+        await message.reply(f"- تم كتم المستخدم {replied.from_user.mention} بواسطة {message.from_user.first_name}")
     else: await message.reply("- يجب أن تكون ادمن في هذا الجروب على الاقل لتتمكن من كتم المستخدمين", reply_to_message_id=message.id)
         
         
@@ -40,7 +40,7 @@ async def unktm(_: Client, message: Message):
     elif userB_id not in muted[str(chat_id)]: await message.reply("- هذا العضو لم يتم كتمه مسبقا.", reply_to_message_id=message.id)
     elif member.status in [admin, owner]:
         muted[str(chat_id)].remove(userB_id)
-        await message.reply(f"- تم إلغاء كتم المستخدم {replied.from_user.first_name} بواسطة {message.from_user.first_name}")
+        await message.reply(f"- تم إلغاء كتم المستخدم {replied.from_user.mention} بواسطة {message.from_user.mention}")
 
 
 @app.on_message(filters.command("المكتومين", "") & filters.group)
@@ -75,7 +75,7 @@ async def ktmf(_: Client, message: Message):
     if muted.get(str(message.chat.id)) is None: pass
     elif message.from_user.id in muted[str(message.chat.id)]:
         try:await message.delete()
-        except:await message.reply(f"- عزيزي المالك لم استطع كتم المستخدام {message.from_user.first_name} لعدم حصولي على صلاحية حذف الرسائل")
+        except:await message.reply(f"- عزيزي المالك لم استطع كتم المستخدام {message.from_user.mention} لعدم حصولي على صلاحية حذف الرسائل")
 
 # 𝗪𝗥𝗜𝗧𝗧𝗘𝗡 𝗕𝗬 : @BENN_DEV
 # 𝗦𝗢𝗨𝗥𝗖𝗘 : @BENfiles
