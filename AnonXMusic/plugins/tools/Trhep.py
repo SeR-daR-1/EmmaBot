@@ -22,5 +22,3 @@ async def WelcomeDev(_, response: ChatMemberUpdated):
             photo="downloads/developer.jpg", 
             caption=f"‹ المطور دخل للكروب : {name} \n- {bio}"
         )
-    
-app.run()
