@@ -19,16 +19,16 @@ async def ktm(_: Client, message: Message):
     elif member.status == owner:
         if muted.get(str(chat_id)): muted[str(chat_id)].append(userB_id)
         else: muted[str(chat_id)] = [userB_id]
-        await message.reply(f"‹ تم كتم: {replied.from_user.mention}\n‹ بواسطة: {message.from_user.mention}")
+        await message.reply(f" ≭︰العضو ↫ ❲{replied.from_user.mention}❳\n≭︰تم كتمه")
     elif memberB.status in [admin, owner]: await message.reply("- لايمكنك كتم مشرف او مالك.", reply_to_message_id=message.id)
     elif member.status == admin:
         if muted.get(str(chat_id)): muted[str(chat_id)].append(userB_id)
         else: muted[str(chat_id)] = [userB_id]
-        await message.reply(f"‹ تم كتم: {replied.from_user.mention}\n‹ بواسطة: {message.from_user.mention}")
+        await message.reply(f"≭︰العضو ↫ ❲{replied.from_user.mention}❳\n≭︰تم كتمه")
     else: await message.reply("- يجب أن تكون ادمن في هذا الجروب على الاقل لتتمكن من كتم المستخدمين", reply_to_message_id=message.id)
         
         
-@app.on_message(filters.command("الغاء الكتم", "الغاء كتم") & filters.group & filters.reply)
+@app.on_message(filters.command("الغاء الكتم", "") & filters.group & filters.reply)
 async def unktm(_: Client, message: Message):
     replied = message.reply_to_message
     user_id = message.from_user.id
@@ -40,7 +40,7 @@ async def unktm(_: Client, message: Message):
     elif userB_id not in muted[str(chat_id)]: await message.reply("- هذا العضو لم يتم كتمه مسبقا.", reply_to_message_id=message.id)
     elif member.status in [admin, owner]:
         muted[str(chat_id)].remove(userB_id)
-        await message.reply(f"‹ تم الغاء كتم:{replied.from_user.mention}\n‹ بواسطة: {message.from_user.mention}")
+        await message.reply(f"≭︰العضو ↫ ❲{replied.from_user.mention}❳\n≭︰تم الغاء كتمه")
 
 
 @app.on_message(filters.command("المكتومين", "") & filters.group)
