@@ -9,16 +9,16 @@ def reply_with_link(client, message):
     user_id = message.reply_to_message.from_user.id
     my_id = message.from_user.id
     bar_id = message.chat.id
-    start_link = f"https://t.me/{(app.get_me()).username}?start=hms{my_id}to{user_id}in{bar_id}"
+    start_link = f"https://t.me/{(app.get_me()).username}?starta=hms{my_id}to{user_id}in{bar_id}"
     reply_markup = InlineKeyboardMarkup(
         [
             [InlineKeyboardButton("‹ أنقر هنا لإرسال الهمسة ›", url=start_link)]
         ]
     )
-    message.reply_text("\n‹أضغط لإرسال الهمسة ›\n", reply_markup=reply_markup)
+    message.reply_text("\n‹ أضغط لإرسال الهمسة ›\n", reply_markup=reply_markup)
 
 waiting_for_hms = False
-@app.on_message(filters.command("start"))
+@app.on_message(filters.command("starta"))
 def hms_start(client, message):
   
   if message.text.split(" ", 1)[-1].startswith("hms"):
@@ -33,7 +33,7 @@ def hms_start(client, message):
     )
     return
 
-@app.on_message(filters.private & filters.text & ~filters.command("start"))
+@app.on_message(filters.private & filters.text & ~filters.command("starta"))
 def send_hms(client, message):
   
   global waiting_for_hms
