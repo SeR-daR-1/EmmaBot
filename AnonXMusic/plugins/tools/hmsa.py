@@ -26,7 +26,7 @@ def hms_start(client, message):
     hms_ids = message.text
     waiting_for_hms = True
     message.reply_text(
-      "-> أرسل الهمسه الآن.\n√",
+      "-› أرسل الهمسه الآن ✅",
       reply_markup = InlineKeyboardMarkup ([[
         InlineKeyboardButton ("إلغاء ❌️", callback_data="hms_cancel")
       ]])
@@ -46,11 +46,11 @@ def send_hms(client, message):
     
     hmses[str(to_id)] = { "hms" : message.text, "bar" : in_id }
     
-    message.reply_text("-> تم ارسال الهمسه.\n√")
+    message.reply_text("-› تم ارسال الهمسه ✅")
     
     app.send_message(
       chat_id = in_id,
-      text = f"╖ المستخدم [{app.get_chat(to_id).first_name}]({to_url})\n╢ لديك همسه من البني آدم دا [{app.get_chat(from_id).first_name}]({from_url})\n╜انت فقط من يستطيع رؤيتها 🔐",
+      text = f"╖ المستخدم [{app.get_chat(to_id).first_name}]({to_url})\n-› لديك همسة سرية من :[{app.get_chat(from_id).first_name}]({from_url})\n- أنت فقط من يستطيع رؤيتها 🔐",
       reply_markup = InlineKeyboardMarkup ([[InlineKeyboardButton("- اضغط لرؤية الهمسه 👀", callback_data = "hms_answer")]])
     )
     
@@ -77,7 +77,4 @@ def cancel_hms(client, callback):
   client.edit_message_text(
   chat_id = callback.message.chat.id,
   message_id = callback.message.id,
-  text = "-> تم إلغاء الهمسه!\n√")
-  
-if __name__ == "__main__":
-  app.run()
+  text = "-› تم إلغاء الهمسة ✅")
