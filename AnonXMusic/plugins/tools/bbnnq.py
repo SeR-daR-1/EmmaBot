@@ -113,9 +113,9 @@ async def ihd(client: Client, message: Message):
 )
 async def yas(client, message):
     usr = await client.get_chat("z_o_i")
-    name = usr.first_name
+    name = message.from_user.mention
     photo = await app.download_media(usr.photo.big_file_id)
-    await message.reply_photo(photo,       caption=f"**≭︰Information Devloper ↯.\n\n:{name}\n≭︰Bio ↬{usr.bio}**", 
+    await message.reply_photo(photo,       caption=f"**≭︰Information Devloper ↯.\n━─━─────━─────━─━\n\n≭︰Name ↬ ❲{name}❳\n≭︰Bio ↬{usr.bio}**", 
     reply_markup=InlineKeyboardMarkup(
             [
                 [
