@@ -27,7 +27,7 @@ async def bottttt(client, message):
 f"بحبك أڪتࢪ ؏ فڪࢪة ♥! {message.from_user.mention}",
 f"بتنفسك ♥ {message.from_user.mention}",
 f"ياعمري انااا تعا لقلببييي {message.from_user.mention}",
-f"تفضل واطلب ايدي من @bbnnQ 🧚🏼‍♂️ {message.from_user.mention}",
+f"تفضل واطلب ايدي من @z_o_i 🧚🏼‍♂️ {message.from_user.mention}",
 f"لا اله الا الله وانا بحبك 🥺 {message.from_user.mention}",
 f"خلص أستحي عيب 😒 {message.from_user.mention}",
 f"خلاص يا مز خجلت 🙂 {message.from_user.mention}",]
@@ -107,15 +107,21 @@ async def ihd(client: Client, message: Message):
             ]
         )
     )
-@app.on_message(command(["المطور","المبرمج","السورس"]))
-async def ahmad(client: Client, message: Message):
-    await message.reply_text(f"- 𝐖ᴇʟᴄᴏᴍᴇ 𝐓ᴏ 𝐒ᴏụʀᴄᴇ 𝐄ᴍᴍᴀ 🥀\n- 𝐒ᴏụʀᴄᴇ 𝐃ᴇᴠᴇʟᴏᴘᴇʀ: @z_o_i. ",
-        reply_markup=InlineKeyboardMarkup(
-        [
+@app.on_message(
+    command(["المطور"])
+    & filters.group
+)
+async def yas(client, message):
+    usr = await client.get_chat("z_o_i")
+    name = usr.first_name
+    photo = await app.download_media(usr.photo.big_file_id)
+    await message.reply_photo(photo,       caption=f"**≭︰Information Devloper ↯.\n\n:{name}\n≭︰Bio ↬{usr.bio}**", 
+    reply_markup=InlineKeyboardMarkup(
             [
-                InlineKeyboardButton("𝐃ᴇᴠᴇʟᴏᴘᴇʀ", user_id=5866649827),
-                InlineKeyboardButton("𝐒ᴏụʀᴄᴇ", url="t.me/cczza"),
-            ],
+                [
+                    InlineKeyboardButton(
+                        name, url=f"https://t.me/{usr.username}")
+                ],
             ]
         ),
     )
