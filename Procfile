@@ -1,1 +1,1 @@
-web: gunicorn <bash start>.wsgi
+web: gunicorn bash start.wsgi
