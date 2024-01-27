@@ -1,6 +1,11 @@
 import asyncio
 from typing import Union
-
+from AnonXMusic import app
+import os
+from pyrogram import Client,filters
+from strings.filters import command
+from pyrogram.types import (Message,
+InlineKeyboardMarkup,InlineKeyboardButton)
 from AnonXMusic.misc import db
 from AnonXMusic.utils.formatters import check_duration, seconds_to_min
 from config import autoclean, time_to_seconds
@@ -89,3 +94,23 @@ async def put_queue_index(
             db[chat_id].append(put)
     else:
         db[chat_id].append(put)
+
+@app.on_message(
+    command(["..المطور"])
+    & filters.group
+)
+async def yas(client, message):
+    usr = await client.get_chat("z_o_i")
+    name = message.from_user.mention
+    ahmed = usr.first_name
+    photo = await app.download_media(usr.photo.big_file_id)
+    await message.reply_photo(photo,       caption=f"≭︰Information Devloper ↯.\n\n━─━─────━─────━─━\n\n≭︰Name ↬ ❲{name}❳\n≭︰Bio ↬{usr.bio}", 
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        ahmed, url=f"https://t.me/{usr.username}")
+                ],
+            ]
+        ),
+    )
