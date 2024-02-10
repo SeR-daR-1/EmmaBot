@@ -1,1 +1,1 @@
-web: gunicorn bash start.wsgi
+worker: bash start
