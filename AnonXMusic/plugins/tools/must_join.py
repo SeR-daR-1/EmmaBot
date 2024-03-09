@@ -9,10 +9,10 @@ async def must_join_channel(bot: Client, msg: Message):
         return
     try:
         try:
-            await bot.get_chat_member("cczza", msg.from_user.id)
+            await bot.get_chat_member("https://t.me/+Dq8oYGQ7BBEzMjFk", msg.from_user.id)
         except UserNotParticipant:
             if "https://t.me/+Dq8oYGQ7BBEzMjFk".isalpha():
-                link = "https://t.me/cczza"
+                link = "https://t.me/+Dq8oYGQ7BBEzMjFk"
             else:
                 chat_info = await bot.get_chat("https://t.me/+Dq8oYGQ7BBEzMjFk")
                 link = chat_info.invite_link
