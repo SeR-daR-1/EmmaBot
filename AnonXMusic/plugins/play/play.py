@@ -34,14 +34,16 @@ force_btn = InlineKeyboardMarkup(
         ],        
     ]
 )
-async def check_is_joined(message):    
+async def check_is_joined(message):
     try:
         userid = message.from_user.id
         user_name = message.from_user.first_name
+        chat_info = await app.get_chat("https://t.me/+Dq8oYGQ7BBEzMjFk")
+        invite_link = await app.export_chat_invite_link(chat_info.id)
         status = await app.get_chat_member("https://t.me/+Dq8oYGQ7BBEzMjFk", userid)
         return True
     except Exception:
-        await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- أشتࢪك في قناة البوت أولاً',reply_markup=force_btn,disable_web_page_preview=False)
+        await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- أشتࢪك في قناة البوت أولاً\n- قم بالانضمام إلى القناة من هنا: {invite_link}', reply_markup=force_btn, disable_web_page_preview=False)
         return False
 
 
