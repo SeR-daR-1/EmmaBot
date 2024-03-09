@@ -16,11 +16,9 @@ async def must_join_channel(bot: Client, msg: Message):
             else:
                 chat_info = await bot.get_chat("zc_cw")
                 link = chat_info.invite_link
-            user_channel_info = await bot.get_chat(msg.from_user.id)
-            user_channel_invite_link = await bot.export_chat_invite_link(user_channel_info.id)
             try:
                 await msg.reply(
-                    f"⌯︙عذࢪاَ عزيزي ↫ {msg.from_user.mention} \n⌯︙عـليك الاشـتࢪاك في قنـاة البـوت اولآ! \n⌯︙قم بالانضمام إلى القناة من هنا: {user_channel_invite_link}",
+                    f"⌯︙عذࢪاَ عزيزي ↫ {msg.from_user.mention} \n⌯︙عـليك الاشـتࢪاك في قنـاة البـوت اولآ!",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton("!", url=link)]
