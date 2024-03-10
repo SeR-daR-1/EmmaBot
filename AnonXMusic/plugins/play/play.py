@@ -28,15 +28,6 @@ from config import BANNED_USERS, lyrical
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-join_btn = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton(   
-              text="تم الاشتراك في القناة", callback_data="joined")                        
-        ],        
-    ]
-)
-
 force_btn = InlineKeyboardMarkup(
     [
         [
@@ -52,10 +43,7 @@ async def check_is_joined(message):
         chat_info = await app.get_chat("zc_cw")
         invite_link = await app.export_chat_invite_link(chat_info.id)
         status = await app.get_chat_member("zc_cw", userid)
-        if status.status == "member" or status.status == "administrator" or status.status == "creator":
-            await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- تم التحقق من الاشتراك في القناة ✅', reply_markup=join_btn, disable_web_page_preview=False)
-        else:
-            await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- لم يتم التحقق من الاشتراك في القناة ❌\n- قم بالانضمام إلى القناة من هنا: {invite_link}', reply_markup=force_btn, disable_web_page_preview=False)
+        await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- تم التحقق من الاشتراك في القناة ✅', reply_markup=force_btn, disable_web_page_preview=False)
         return True
     except Exception:
         await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- لم يتم التحقق من الاشتراك في القناة ❌\n- قم بالانضمام إلى القناة من هنا: {invite_link}', reply_markup=force_btn, disable_web_page_preview=False)
