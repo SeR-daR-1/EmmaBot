@@ -2,11 +2,6 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
 from AnonXMusic import app
-
-from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram.errors import UserNotParticipant, ChatWriteForbidden, ChatAdminRequired
-
 @app.on_message(filters.incoming & filters.private, group=-1)
 async def must_join_channel(bot: Client, msg: Message):
     if not "https://t.me/zc_cw":  # Not compulsory
@@ -15,6 +10,13 @@ async def must_join_channel(bot: Client, msg: Message):
         try:
             await bot.get_chat_member("zc_cw", msg.from_user.id)
             verification_status = "تم التحقق من الاشتراك في القناة ✅"
+            await msg.reply(
+                f"⌯︙عذࢪاَ عزيزي ↫ {msg.from_user.mention} \n⌯︙{verification_status}",
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("تم التحقق من الاشتراك", callback_data="verified")]
+                ])
+            )
         except UserNotParticipant:
             verification_status = "لم يتم التحقق من الاشتراك في القناة ❌"
             if "https://t.me/zc_cw".isalpha():
@@ -30,8 +32,7 @@ async def must_join_channel(bot: Client, msg: Message):
                         [InlineKeyboardButton("التحقق من الاشتراك", url=link)]
                     ])
                 )
-                await msg.stop_propagation()
             except ChatWriteForbidden:
                 pass
     except ChatAdminRequired:
-        print(f"I'm not admin in the MUST_JOIN chat @cczza !")
+        print(f"I'm not admin in the MUST_JOIN")
