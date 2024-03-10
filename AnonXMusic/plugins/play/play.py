@@ -40,9 +40,9 @@ async def check_is_joined(message):
     try:
         userid = message.from_user.id
         user_name = message.from_user.first_name
-        chat_info = await bot.get_chat("zc_cw")
-        invite_link = await bot.export_chat_invite_link(chat_info.id)
-        status = await bot.get_chat_member("zc_cw", userid)
+        chat_info = await app.get_chat("zc_cw")
+        invite_link = await app.export_chat_invite_link(chat_info.id)
+        status = await app.get_chat_member("zc_cw", userid)
         await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- تم التحقق من الاشتراك في القناة ✅', reply_markup=force_btn, disable_web_page_preview=False)
         return True
     except Exception:
