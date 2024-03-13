@@ -29,35 +29,23 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 force_btn = InlineKeyboardMarkup(
-   [
-       [
-           InlineKeyboardButton(
-               text="التحقق من الاشتراك", url="https://t.me/zc_cw"
-           )
-       ],
-   ]
+    [
+        [
+            InlineKeyboardButton(   
+              text=f"!", url=f"https://t.me/zc_cw",)                        
+        ],        
+    ]
 )
+async def check_is_joined(message):    
+    try:
+        userid = message.from_user.id
+        user_name = message.from_user.first_name
+        status = await app.get_chat_member("zc_cw", userid)
+        return True
+    except Exception:
+        await message.reply_text(f'- عذراً عزيزي :{message.from_user.mention}\n- أشتࢪك في قناة البوت أولاً 👇🏻',reply_markup=force_btn,disable_web_page_preview=False)
+        return False
 
-async def check_is_joined(message):
-   try:
-       userid = message.from_user.id
-       user_name = message.from_user.first_name
-       chat_info = await app.get_chat("zc_cw")
-       invite_link = await app.export_chat_invite_link(chat_info.id)
-       status = await app.get_chat_member("zc_cw", userid)
-       
-       text = f'- عزيزي: {message.from_user.mention}\n'
-       if status.status == 'member':
-           text += '- تم التحقق من الاشتراك في القناة ✅'
-       else:
-           text += '- لم يتم التحقق من الاشتراك في القناة ❌\n- قم بالانضمام إلى القناة من هنا: {invite_link}'
-       
-       await message.reply_text(text, reply_markup=force_btn, disable_web_page_preview=False)
-       return True
-   except Exception as e:
-       print(e)
-       await message.reply_text(f'- عزيزي: {message.from_user.mention}\n- لم يتم التحقق من الاشتراك في القناة ❌\n- قم بالانضمام إلى القناة من هنا: {invite_link}', reply_markup=force_btn, disable_web_page_preview=False)
-       return False
 
 
 @app.on_message(command(["تشغيل", "/play", "/vplay"])
